@@ -5,7 +5,6 @@ const BACKEND_URL = "http://ec2-3-135-238-199.us-east-2.compute.amazonaws.com"
 export const SubirArchivo = async (files) => {
     let formData = new FormData();
     formData.append("files", files)
-
     try {
         const response = await axios.post(`${BACKEND_URL}/api/Amazon/Upload`, formData)
         debugger
@@ -19,6 +18,7 @@ export const SubirArchivo = async (files) => {
         return { data: [], error: true }
     }
 }
+
 export const EnviarEmail = async () => {
     try {
         const response = await axios.post(`${BACKEND_URL}/api/Amazon/Email`)
