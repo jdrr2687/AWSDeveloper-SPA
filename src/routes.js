@@ -37,6 +37,9 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
+const S3 = React.lazy(() => import('./views/s3'));
+const SES = React.lazy(() => import('./views/ses'));
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -77,7 +80,10 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
   { path: '/widgets', name: 'Widgets', component: Widgets },
-  { path: '/users', exact: true,  name: 'Users', component: Users },
+  { path: '/users', exact: true, name: 'Users', component: Users },
+  { path: '/s3', exact: true, name: 'Users', component: S3 },
+  { path: '/ses', exact: true, name: 'Users', component: SES },
+
   { path: '/users/:id', exact: true, name: 'User Details', component: User }
 ];
 
