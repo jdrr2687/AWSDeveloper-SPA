@@ -21,9 +21,30 @@ import { EnviarEmail } from '../../servicios';
 const SES = () => {
     const [error, setError] = useState(false)
     const [done, setDone] = useState(false)
+    const [state, setState] = useState({
+        subject: "",
+        message: "",
+        sendedEmail: ""
+    })
 
-    const enviar = () => {
+    const enviar = async (e) => {
+        let response = await EnviarEmail(state);
+        if (response.error) {
+            setError(true)
+            setDone(false)
+        }
+        if (!response.error) {
+            setError(false)
+            setDone(true)
+        }
+    }
+    const onChange = (e) => {
+        const { target } = e
 
+        setState({
+            ...state,
+            [target.name]: target.value
+        })
     }
 
     return (
@@ -41,7 +62,7 @@ const SES = () => {
                                     <CLabel htmlFor="text-input">Asunto</CLabel>
                                 </CCol>
                                 <CCol xs="12" md="9">
-                                    <CInput id="text-input" name="text-input" placeholder="" />
+                                    <CInput value={state.subject} onChange={onChange} id="text-input" name="subject" placeholder="" />
                                 </CCol>
                             </CFormGroup>
                             <CFormGroup row>
@@ -49,7 +70,7 @@ const SES = () => {
                                     <CLabel htmlFor="email-input">Correo</CLabel>
                                 </CCol>
                                 <CCol xs="12" md="9">
-                                    <CInput type="email" id="email-input" name="email-input" placeholder="" autoComplete="email" />
+                                    <CInput value={state.sendedEmail} onChange={onChange} type="email" id="email-input" name="sendedEmail" placeholder="" autoComplete="email" />
                                 </CCol>
                             </CFormGroup>
                             <CFormGroup row>
@@ -58,7 +79,9 @@ const SES = () => {
                                 </CCol>
                                 <CCol xs="12" md="9">
                                     <CTextarea
-                                        name="textarea-input"
+                                        value={state.message}
+                                        name="message"
+                                        onChange={onChange}
                                         id="textarea-input"
                                         rows="9"
                                     />
@@ -80,9 +103,9 @@ const SES = () => {
                         </CForm>
                     </CCardBody>
                     <CCardFooter>
-                        <CButton type="submit" size="lg" color="primary">
+                        <CButton onClick={enviar} type="submit" size="lg" color="primary">
                             <CIcon name="cil-scrubber" />
-                             Submit
+                             Enviar
                         </CButton>
                     </CCardFooter>
                 </CCard>
