@@ -31,7 +31,7 @@ const SES = () => {
             <CCol xs="12" md="8">
                 <CCard>
                     <CCardHeader>
-                        Envio de correo
+                        Enviar correo electrónico con 
               <small> SES</small>
                     </CCardHeader>
                     <CCardBody>
@@ -46,7 +46,7 @@ const SES = () => {
                             </CFormGroup>
                             <CFormGroup row>
                                 <CCol md="3">
-                                    <CLabel htmlFor="email-input">Correo</CLabel>
+                                    <CLabel htmlFor="email-input">Email</CLabel>
                                 </CCol>
                                 <CCol xs="12" md="9">
                                     <CInput type="email" id="email-input" name="email-input" placeholder="" autoComplete="email" />
